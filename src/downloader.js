@@ -135,6 +135,13 @@ var Downloader = {
       name: url.replace(/^.*\//, ""),
       md5: md5
     };
+
+    if (!fileObject.name.length) {
+        var parts =n.url.split('/');
+        var fileName = parts.pop() || parts.pop(); // handle potential trailing slash
+        fileObject.name = fileName;
+    }
+
     Downloader.downloadQueue.push(fileObject);
     if (!Downloader.isLoading()) {
       Downloader.loadNextInQueue();
