@@ -139,6 +139,10 @@ var Downloader = {
     if (!fileObject.name.length) {
         var parts =n.url.split('/');
         var fileName = parts.pop() || parts.pop(); // handle potential trailing slash
+        if (fileName.indexOf('.') == -1 ){
+          //no extension, add default one
+          fileName = fileName + ".jpg";
+        }
         fileObject.name = fileName;
     }
 
